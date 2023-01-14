@@ -5,4 +5,10 @@ badwolf: https://github.com/sjl/badwolf
 iceberg: https://github.com/cocopon/iceberg.vim  
 
 ## Install Vim:
+```Bash
+sudo apt install vim
+```
+```Bash
+sudo apt-get install vim
+```
 
