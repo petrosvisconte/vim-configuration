@@ -53,8 +53,9 @@ Enter the following command to set vim as the default editor for just the curren
 ```bash
 select-editor
 ```
-Then enter the number that corresponds with the path containing vim.basic (be careful to select vim.basic and not vim.tiny)  
-  
+    
 Enter the following command if you wish to set vim as the default editor system wide (or if the command above does not work)
 ```bash
-sudo update-alternatives --config editor    
+sudo update-alternatives --config editor
+```
+Then, when prompted, enter the number that corresponds with the path containing vim.basic (be careful to select vim.basic and not vim.tiny)    
