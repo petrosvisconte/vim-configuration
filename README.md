@@ -43,6 +43,8 @@ To write changes and quit vim you need to type **wq** following the **:** and th
 ```bash
 :wq
 ```
-To simply write changes you can enter **w**, to quit if you have not made any changes or have already written your changes you can enter **q** and to quit and discard any changes you may have made: enter **q!**  
+To simply write changes you can enter **w**   
+To quit if you have not made any changes or have already written your changes you can enter **q**  
+To quit and discard any changes you may have made: enter **q!**    
 Keep in mind that if you enter a command, vim will return to "Normal" mode. This means that you will need to re-enter **:** to return to command mode and type in a new command.
    
