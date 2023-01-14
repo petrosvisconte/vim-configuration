@@ -4,7 +4,7 @@ monokai: https://github.com/sickill/vim-monokai
 badwolf: https://github.com/sjl/badwolf  
 iceberg: https://github.com/cocopon/iceberg.vim  
 
-## Install Vim:
+## Installing Vim:
 ```Bash
 sudo apt install vim
 ```
@@ -37,7 +37,7 @@ Now you can enter "Command" mode by typing
 - To quit and discard any changes you may have made: enter **q!**      
   
 Keep in mind that after you enter a command, vim will return to "Normal" mode. This means that you will need to re-enter **:** to return to command mode and type in a new command.  
-## Set Vim as the default text editor:
+## Setting Vim as the default text editor:
 ### Method 1: From the .bashrc file
 Open the .bashrc file located in your home directory
 ```bash
