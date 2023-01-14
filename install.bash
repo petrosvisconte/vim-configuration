@@ -1,6 +1,6 @@
 #! /bin/bash 
 
-# Checks files before running installation 
+### Checks files before running installation 
 FILE=~/vim-configuration
 if [ ! -d "$FILE" ]; then
 	echo "$FILE does not exist"
@@ -17,7 +17,7 @@ if [ ! -f "$FILE" ]; then
 	exit 1
 fi
 
-# Allows user to select color scheme of their choice and appends code to .vimrc
+### Allows user to select color scheme of their choice and appends code to .vimrc
 read -p "Enter the name of your desired colorscheme: " color
 FILE=~/vim-configuration/colors/$color.vim
 # Checks if color.vim is available

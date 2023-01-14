@@ -147,7 +147,6 @@ endif
 
 " Custom configuration settings
 set background=dark
-colorscheme iceberg
 set number
 syntax enable
 set termguicolors
@@ -159,3 +158,5 @@ set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'one',
       \ }
+
+" colorscheme
