@@ -58,19 +58,5 @@ Enter the following command if you wish to set vim as the default editor system 
 ```bash
 sudo update-alternatives --config editor
 ```
-Then, when prompted, enter the number that corresponds with the path containing vim.basic (be careful to select vim.basic and not vim.tiny)
-   
-**Example output of the above command:**
-```ascii
-There are 4 choices for the alternative editor (providing /usr/bin/editor).
+Then, when prompted, enter the number that corresponds with the path containing vim.basic (be careful to select vim.basic and not vim.tiny)  
 
-  Selection    Path                Priority   Status
-------------------------------------------------------------
-  0            /bin/nano            40        auto mode
-  1            /bin/nano            40        manual mode
-  2            /usr/bin/code        0         manual mode
-* 3            /usr/bin/vim.basic   30        manual mode
-  4            /usr/bin/vim.tiny    15        manual mode
-
-Press <enter> to keep the current choice[*], or type selection number:
-```    
