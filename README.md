@@ -8,6 +8,7 @@ iceberg: https://github.com/cocopon/iceberg.vim
 ```Bash
 sudo apt install vim
 ```
+or
 ```Bash
 sudo apt-get install vim
 ```
