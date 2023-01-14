@@ -12,7 +12,6 @@ or
 ```Bash
 sudo apt-get install vim
 ```
-
 **Note:** typing vi acts as a symbolic link in **Debian** and will open vim if it is installed. This means that to open a file with vim you can simply type 
 ```Bash
 vi file_name
@@ -22,6 +21,7 @@ instead of
 vim file_name
 ```
 For this guide vim will be typed out completely to prevent confusion  
+
 ## Set Vim as the default text editor:
 ### Method 1: From the .bashrc file
 Open the .bashrc file located in your home directory
@@ -47,5 +47,14 @@ Now you can enter "Command" mode by typing
 - To quit if you have not made any changes or have already written your changes you can enter **q**  
 - To quit and discard any changes you may have made: enter **q!**      
   
-Keep in mind that after you enter a command, vim will return to "Normal" mode. This means that you will need to re-enter **:** to return to command mode and type in a new command.
-   
+Keep in mind that after you enter a command, vim will return to "Normal" mode. This means that you will need to re-enter **:** to return to command mode and type in a new command.  
+### Method 2: From the command line (Debian/Ubuntu)
+Enter the following command to set vim as the default editor for just the current user:  
+```bash
+select-editor
+```
+Then enter the number that corresponds with the path containing vim.basic (be careful to select vim.basic and not vim.tiny)  
+  
+Enter the following command if you wish to set vim as the default editor system wide (or if the command above does not work)
+```bash
+sudo update-alternatives --config editor    
