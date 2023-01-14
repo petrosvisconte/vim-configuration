@@ -23,7 +23,7 @@ vim file_name
 ```
 For this guide vim will be typed out completely to prevent confusion  
 ## Set Vim as the default text editor:
-#### Method 1: From the .bashrc file
+### Method 1: From the .bashrc file
 Open the .bashrc file located in your home directory
 ```bash
 vim ~/.bashrc 
