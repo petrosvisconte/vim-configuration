@@ -21,18 +21,7 @@ instead of
 vim file_name
 ```
 For this guide vim will be typed out completely to prevent confusion  
-
-## Set Vim as the default text editor:
-### Method 1: From the .bashrc file
-Open the .bashrc file located in your home directory
-```bash
-vim ~/.bashrc 
-```
-Add the following lines to the end of the file
-```bash
-export VISUAL=vim
-export EDITOR="$VISUAL"
-```
+  
 #### **A quick note if you have never used vim before:**  
 There are several different modes that vim can be in. When you enter vim it will open the file in "Normal" mode. In order to edit the text as you would expect you will need to enter "Insert" mode which can be done by simply pressing **I** on your keyboard. You should see "insert" pop up on the bottom left when you do so. You can now type the lines above in the file as you would normally. To write changes and exit vim you need to change modes again. First you will need to switch back to "Normal" which can be done by pressing the **Esc** key.   
 Now you can enter "Command" mode by typing
@@ -48,6 +37,17 @@ Now you can enter "Command" mode by typing
 - To quit and discard any changes you may have made: enter **q!**      
   
 Keep in mind that after you enter a command, vim will return to "Normal" mode. This means that you will need to re-enter **:** to return to command mode and type in a new command.  
+## Set Vim as the default text editor:
+### Method 1: From the .bashrc file
+Open the .bashrc file located in your home directory
+```bash
+vim ~/.bashrc 
+```
+Add the following lines to the end of the file
+```bash
+export VISUAL=vim
+export EDITOR="$VISUAL"
+```
 ### Method 2: From the command line (Debian/Ubuntu)
 Enter the following command to set vim as the default editor for just the current user:  
 ```bash
