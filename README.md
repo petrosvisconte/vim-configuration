@@ -12,3 +12,5 @@ sudo apt install vim
 sudo apt-get install vim
 ```
 
+## Set Vim as the default text editor:  
+#### From bash configuration file: 
