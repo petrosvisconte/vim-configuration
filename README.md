@@ -60,7 +60,7 @@ sudo update-alternatives --config editor
 ```
 Then, when prompted, enter the number that corresponds with the path containing vim.basic (be careful to select vim.basic and not vim.tiny)
    
-Example output of the above command:
+**Example output of the above command:**
 ```ascii
 There are 4 choices for the alternative editor (providing /usr/bin/editor).
 
