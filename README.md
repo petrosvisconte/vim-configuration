@@ -22,7 +22,7 @@ vim file_name
 ```
 For this guide vim will be typed out completely to prevent confusion  
   
-#### **A quick note if you have never used vim before:**  
+### **A quick note if you have never used vim before:**  
 There are several different modes that vim can be in. When you enter vim it will open the file in "Normal" mode. In order to edit the text as you would expect you will need to enter "Insert" mode which can be done by simply pressing **I** on your keyboard. You should see "insert" pop up on the bottom left when you do so. You can now type the lines above in the file as you would normally. To write changes and exit vim you need to change modes again. First you will need to switch back to "Normal" which can be done by pressing the **Esc** key.   
 Now you can enter "Command" mode by typing
 ```bash
