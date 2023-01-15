@@ -31,7 +31,25 @@ fi
 ### Copies files from github clone to user's directory
 cp ~/vim-configuration/colors/* ~/.vim/colors
 # Prompts user to overwrite if they already have an existing .vimrc 
-cp -i ~/vim-configuration/.vimrc ~
+FILE=~/.vimrc
+if [ -f "$FILE" ]; then
+	read -p "You already have a .vimrc created. Overwrite file? (Enter Y to proceed or N to abort): " dec
+	input=false
+	while [ "$input" = false ]
+	do
+		if [[ "$dec" = "Y" || "$dec" = "y" ]]; then
+			cp ~/vim-configuration/.vimrc ~
+			input=true
+		elif [[ "$dec" = "N" || "$dec" = "n" ]]; then
+			echo "Install canceled by user"
+			exit 1
+		else
+			read -p "Incorrect Input. Please enter either Y or N. Alternatively you can press ctrl^C to quit:" dec
+		fi
+	done
+else 
+	cp ~/vim-configuration/.vimrc ~	
+fi
 
 ### Allows user to select color scheme of their choice and appends code to .vimrc
 read -p "Enter the name of your desired colorscheme: " color
@@ -52,3 +70,10 @@ fi
 # Appends colorscheme chosen to vim config file
 echo "colorscheme $color" >> .vimrc
 
+### Installs and setups vim-plug and desired plugins
+#vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#lightline 
+#  Plug 'itchyny/lightline.vim'
+#  vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
