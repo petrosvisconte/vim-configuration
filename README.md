@@ -1,6 +1,5 @@
-# vim-configuration
+# vim_configuration
 
-## Work in progress
 
 monokai: https://github.com/sickill/vim-monokai  
 badwolf: https://github.com/sjl/badwolf  
