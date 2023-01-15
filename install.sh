@@ -59,26 +59,27 @@ echo "colorscheme $color" >> ~/.vimrc
 
 ### Installs and setups vim-plug and desired plugins
 # Prompts user if they would like to install vim-plug and plugins
-until [ "$dec" = y ] || [ "$dec" = n ]; do
-	read -p "Install vim-plug and desired plugins? [y/n]: " dec
+until [ "$dec1" = y ] || [ "$dec1" = n ]; do
+	read -p "Install vim-plug and desired plugins? [y/n]: " dec1
 done
-if [ "$dec" = n ]; then
+if [ "$dec1" = n ]; then
 	echo "Setup complete"
 	exit 0
 fi
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+echo "" >> ~/.vimrc
 echo '" vim-plug plugins' >> ~/.vimrc
 echo "call plug#begin()" >> ~/.vimrc
 echo "call plug#end()" >> ~/.vimrc
 echo 'vim-plug installed'
 
 # lightline 
-until [ "$dec" = y ] || [ "$dec" = n ]; do
-	read -p "Install lightline (status bar)? [y/n]: " dec
+until [ "$dec2" = y ] || [ "$dec2" = n ]; do
+	read -p "Install lightline (status bar)? [y/n]: " dec2
 done
-if [ "$dec" = y ]; then
-	sed -i '/call plug#begin()/a "Plug 'itchyny/lightline.vim'"' ~/.vimrc
+if [ "$dec2" = y ]; then
+	sed -i "/call plug#begin()/a Plug 'itchyny/lightline.vim'" ~/.vimrc
 fi 
 #  vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
