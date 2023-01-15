@@ -17,7 +17,20 @@ if [ ! -f "$FILE" ]; then
 	exit 1
 fi
 
-### Creates necessary directories if they do not already exist
+
+### Copies files from github clone to user's directory
+# Prompts user to overwrite or exit if they already have an existing .vimrc 
+FILE=~/.vimrc
+if [ -f "$FILE" ]; then
+	until [ $dec = "y" ] || [ $dec = "n" ]; do
+		read -p "A .vimrc has already been created. Overwrite file? [y/n]: " dec
+	done
+	if [ $dec = "n" ]; then
+		echo "Install canceled"
+		exit 1
+	fi
+fi
+# Creates necessary directories if they do not already exist
 FILE=~/.vim
 if [ ! -d "$FILE" ]; then
 	mkdir -p ~/.vim/colors
@@ -26,30 +39,10 @@ else
 	if [ ! -d "$FILE" ]; then
 		mkdir ~/.vim/colors
 	fi
-fi	
-
-### Copies files from github clone to user's directory
-cp ~/vim-configuration/colors/* ~/.vim/colors
-# Prompts user to overwrite if they already have an existing .vimrc 
-FILE=~/.vimrc
-if [ -f "$FILE" ]; then
-	read -p "You already have a .vimrc created. Overwrite file? (Enter Y to proceed or N to abort): " dec
-	input=false
-	while [ "$input" = false ]
-	do
-		if [[ "$dec" = "Y" || "$dec" = "y" ]]; then
-			cp ~/vim-configuration/.vimrc ~
-			input=true
-		elif [[ "$dec" = "N" || "$dec" = "n" ]]; then
-			echo "Install canceled by user"
-			exit 1
-		else
-			read -p "Incorrect Input. Please enter either Y or N. Alternatively you can press ctrl^C to quit:" dec
-		fi
-	done
-else 
-	cp ~/vim-configuration/.vimrc ~	
 fi
+# Copies the files
+cp ~/vim-configuration/.vimrc ~	
+cp ~/vim-configuration/colors/* ~/.vim/colors
 
 ### Allows user to select color scheme of their choice and appends code to .vimrc
 read -p "Enter the name of your desired colorscheme: " color
