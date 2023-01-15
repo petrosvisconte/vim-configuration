@@ -25,7 +25,7 @@ if [ -f "$FILE" ]; then
 	until [ "$dec" = y ] || [ "$dec" = n ]; do
 		read -p "A .vimrc has already been created. Overwrite file? [y/n]: " dec
 	done
-	if [ $dec = "n" ]; then
+	if [ "$dec" = n ]; then
 		echo "Install canceled"
 		exit 1
 	fi
@@ -55,12 +55,30 @@ if [ ! -f "$FILE" ]; then
 	done
 fi
 # Appends colorscheme chosen to vim config file
-echo "colorscheme $color" >> .vimrc
+echo "colorscheme $color" >> ~/.vimrc
 
 ### Installs and setups vim-plug and desired plugins
-#vim-plug
+# Prompts user if they would like to install vim-plug and plugins
+until [ "$dec" = y ] || [ "$dec" = n ]; do
+	read -p "Install vim-plug and desired plugins? [y/n]: " dec
+done
+if [ "$dec" = n ]; then
+	echo "Setup complete"
+	exit 0
+fi
+# vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#lightline 
-#  Plug 'itchyny/lightline.vim'
+echo '" vim-plug plugins' >> ~/.vimrc
+echo "call plug#begin()" >> ~/.vimrc
+echo "call plug#end()" >> ~/.vimrc
+echo 'vim-plug installed'
+
+# lightline 
+until [ "$dec" = y ] || [ "$dec" = n ]; do
+	read -p "Install lightline (status bar)? [y/n]: " dec
+done
+if [ "$dec" = y ]; then
+	sed -i '/call plug#begin()/a "Plug 'itchyny/lightline.vim'"' ~/.vimrc
+fi 
 #  vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
