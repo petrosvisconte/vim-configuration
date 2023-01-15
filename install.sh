@@ -32,23 +32,6 @@ fi
 cp ~/vim-configuration/colors/* ~/.vim/colors
 # Prompts user to overwrite if they already have an existing .vimrc 
 cp -i ~/vim-configuration/.vimrc ~
-#FILE=~/.vimrc
-#if [ -f "$FILE" ]; then
-#	read -p "You already have a .vimrc file. Do you wish to proceed with the install and overwrite your current file: (Enter Y to proceed, N to abort): " dec
-#	input=false
-#	while [ "$input" = false ]
-#	do
-#		if [[ "$dec" = "Y" || "$dec" = "y" ]]; then
-#			cp ~/vim-configuration/.vimrc ~
-#			input=true
-#		elif [[ "$dec" = "N" || "$dec" = "n" ]]; then
-#			echo "Install canceled by user"
-#			exit 1
-#		else
-#			read -p "Incorrect Input. Please enter either Y for yes or N for no. Alternatively you can press ctrl^C to quit:" dec
-#		fi
-#	done
-#fi
 
 ### Allows user to select color scheme of their choice and appends code to .vimrc
 read -p "Enter the name of your desired colorscheme: " color
