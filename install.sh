@@ -22,7 +22,7 @@ fi
 # Prompts user to overwrite or exit if they already have an existing .vimrc 
 FILE=~/.vimrc
 if [ -f "$FILE" ]; then
-	until [ $dec = "y" ] || [ $dec = "n" ]; do
+	until [ "$dec" = y ] || [ "$dec" = n ]; do
 		read -p "A .vimrc has already been created. Overwrite file? [y/n]: " dec
 	done
 	if [ $dec = "n" ]; then
@@ -45,20 +45,14 @@ cp ~/vim-configuration/.vimrc ~
 cp ~/vim-configuration/colors/* ~/.vim/colors
 
 ### Allows user to select color scheme of their choice and appends code to .vimrc
-read -p "Enter the name of your desired colorscheme: " color
+read -p "Enter the name of the desired colorscheme: " color
 FILE=~/.vim/colors/$color.vim
 # Checks if color.vim is available
 if [ ! -f "$FILE" ]; then
-	avail=false
-	# Prompts user to enter a valid name until they do
-	while [ "$avail" = false ]
-	do
-		read -p "File cannot be found, please enter a valid name: " color
-       		FILE=~/.vim/colors/$color.vim
-		if [ -f "$FILE" ]; then
-			avail=true
-		fi
-	done			
+	until [ -f "$FILE" ]; do
+		read -p "Color cannot be found, enter a valid name: " color
+		FILE=~/.vim/colors/$color.vim		
+	done
 fi
 # Appends colorscheme chosen to vim config file
 echo "colorscheme $color" >> .vimrc
