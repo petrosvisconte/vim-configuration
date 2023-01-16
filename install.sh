@@ -97,7 +97,6 @@ function install_vimplug {
 ### Installs plugin using vim :PlugInstall command
 function plug_install {
 	vim +'PlugInstall --sync' +qa
-	vim +'PlugInstall --sync' +qa
 }
 
 
