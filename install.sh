@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
 
@@ -53,7 +54,11 @@ function copy_files {
 ### Allows user to select color scheme of their choice and appends code to .vimrc
 function set_color {
 	local color
-	read -p "Enter the name of the desired colorscheme: " color
+	read -p "Enter the name of the desired colorscheme, excluding the file extension (Or press <enter> to list all available colors): " color
+	if [ $dec = "" ]; then
+		ls ~/.vim/colors
+		read -p "Enter the name of the desired colorscheme: " color
+	fi	
 	local FILE=~/.vim/colors/$color.vim
 	# Checks if color.vim is available
 	if [ ! -f "$FILE" ]; then
@@ -84,8 +89,14 @@ function install_vimplug {
 	echo '" vim-plug plugins' >> ~/.vimrc
 	echo "call plug#begin()" >> ~/.vimrc
 	echo "call plug#end()" >> ~/.vimrc
-	echo 'vim-plug installed'
+	echo "vim-plug installed"
 }
+
+### Installs plugin using vim :PlugInstall command
+function plug_install {
+	vim +"PlugInstall --sync" +qa
+}
+
 
 ### Installs and setups lightline
 function install_lightline {
@@ -94,9 +105,11 @@ function install_lightline {
 		read -p "Install lightline (status bar)? [y/n]: " dec
 	done
 	if [ "$dec" = y ]; then
+		plug_install
+		# adds lightline to plugins in .vimrc
 		sed -i "/call plug#begin()/a Plug 'itchyny/lightline.vim'" ~/.vimrc
+		
 	fi	
-	vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
 } 
 
 ### Main function
@@ -107,6 +120,8 @@ function main {
 	install_vimplug
 	install_lightline
 
+	
+	echo "Plugins installed. You can find them in $HOME/.vim/plugged"
 }
 
 main
