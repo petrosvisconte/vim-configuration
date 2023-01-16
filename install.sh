@@ -95,8 +95,8 @@ function install_lightline {
 	done
 	if [ "$dec" = y ]; then
 		sed -i "/call plug#begin()/a Plug 'itchyny/lightline.vim'" ~/.vimrc
-	fi 
-	#  vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
+	fi	
+	vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
 } 
 
 ### Main function
