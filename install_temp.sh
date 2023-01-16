@@ -67,10 +67,10 @@ function set_color {
 ### Installs and setups vim-plug
 function install_vimplug {
 	# Prompts user if they would like to install vim-plug and plugins
-	until [ "$dec1" = y ] || [ "$dec1" = n ]; do
+	until [ "$dec" = y ] || [ "$dec" = n ]; do
 		read -p "Install vim-plug and desired plugins? [y/n]: " dec1
 	done
-	if [ "$dec1" = n ]; then
+	if [ "$dec" = n ]; then
 		echo "Setup complete"
 		exit 0
 	fi
@@ -86,10 +86,10 @@ function install_vimplug {
 
 ### Installs and setups lightline
 function install_lightline {
-	until [ "$dec2" = y ] || [ "$dec2" = n ]; do
+	until [ "$dec" = y ] || [ "$dec" = n ]; do
 		read -p "Install lightline (status bar)? [y/n]: " dec2
 	done
-	if [ "$dec2" = y ]; then
+	if [ "$dec" = y ]; then
 		sed -i "/call plug#begin()/a Plug 'itchyny/lightline.vim'" ~/.vimrc
 	fi 
 	#  vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
