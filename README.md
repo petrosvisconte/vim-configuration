@@ -21,7 +21,7 @@ Not all the work contained in this repository is my own. Files for things like t
   
        
        
-# Available configurations:
+# Available configurations: (Work in progess)
 ### Vim color modes:
 This has an effect on colorschemes or plugins that have built in dark or light modes  
    
