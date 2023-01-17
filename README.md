@@ -115,9 +115,9 @@ lightline: https://github.com/itchyny/lightline.vim
 wakatime: https://wakatime.com  
 256_noir: https://github.com/andreasvc/vim-256noir  
 afterglow: https://github.com/danilo-augusto/vim-afterglow  
-alduin: https://github.com/AlessandroYorba/Alduin  
-anderson: https://github.com/tlhr/anderson.vim  
-angr: https://github.com/zacanger/angr.vim
-apprentice: https://github.com/romainl/Apprentice
-archery: https://github.com/Badacadabra/vim-archery
+alduin: https://github.com/AlessandroYorba/Alduin    
+anderson: https://github.com/tlhr/anderson.vim    
+angr: https://github.com/zacanger/angr.vim  
+apprentice: https://github.com/romainl/Apprentice  
+archery: https://github.com/Badacadabra/vim-archery  
 
