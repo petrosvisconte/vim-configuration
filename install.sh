@@ -152,13 +152,11 @@ function install_lightline {
 		fi
 		# Appends lightline congfiguration to .vimrc file
 		{
-			
 			echo '" lightline config'
 			echo 'set noshowmode'
 			echo 'let g:lightline = {'
 	      		echo "	\ 'colorscheme': 'one',"
-	      		echo '	\ }'
-			
+	      		echo '	\ }'	
 		} >> ~/.vimrc
 		
 	fi	
