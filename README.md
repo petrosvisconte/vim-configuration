@@ -34,6 +34,13 @@ Sets the overall colorscheme in vim
 - goodwolf
 - iceberg
 - monokai  
+### Plugin managers:
+Used to install plugins
+
+- vim-plug
+### Plugins
+- lightline
+- wakatime
 
 ## Installing Vim:
 ```Bash
