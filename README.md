@@ -28,7 +28,7 @@ This has an effect on colorschemes or plugins that have built in dark or light m
 - dark
 - light
 ### Vim colorschemes:
-Sets the overall colorscheme in vim  
+Sets the overall colorscheme in vim. All provided colorschemes are 256-color compatible 
 
 - badwolf
 - goodwolf
