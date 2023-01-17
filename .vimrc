@@ -146,11 +146,8 @@ endif
 
 
 " custom configuration settings
-set background=dark
 set number
 syntax enable
 set termguicolors
 set showtabline=2
 set laststatus=2
-
-" colorscheme

@@ -51,10 +51,29 @@ function copy_files {
 	cp ~/vim_configuration/colors/* ~/.vim/colors
 }
 
-### Allows user to select color scheme of their choice and appends code to .vimrc
-function set_color {
+### Allows user to select their color mode and appends necessary code to .vimrc
+function set_colormode {
+	local mode=
+	until [ "$mode" = d ] || [ "$mode" = l ]; do
+	read -p "Enter your desired color mode (dark or light). 
+		This effects colorschemes and plugins with light and dark variants built in. [d/l]: " mode
+	done
+	if [ "$mode" = d ]; then
+		echo 'set background=dark' >> ~/.vimrc
+		echo "< dark mode set"
+	else
+		echo 'set background=light' >> ~/.vimrc
+		echo "< light mode set"
+	fi	
+	# Appends colorscheme comment for later
+	echo '" colorscheme' >> ~/.vimrc
+}
+
+### Allows user to select color scheme of their choice and appends necessary code to .vimrc
+function set_colorscheme {
 	local color
-	read -p "(Enter the name of the desired coloscheme, without file extension. Or press <enter> to list all available colors): " color
+	read -p "(Enter the name of the desired colorscheme, without file extension. 
+		Or press <enter> to list all available colors): " color
 	if [ "$color" = "" ]; then
 		echo -e "\n"
 		ls ~/.vim/colors
@@ -69,6 +88,7 @@ function set_color {
 			FILE=~/.vim/colors/$color.vim		
 		done
 	fi
+	echo "< ~/.vim/colors/$color.vim set as colorscheme"
 	# Appends colorscheme chosen to vim config file
 	echo "colorscheme $color" >> ~/.vimrc
 }
@@ -103,6 +123,7 @@ function plug_install {
 ### Installs and setups lightline
 function install_lightline {
 	local dec=
+	# prompts to install lightline
 	until [ "$dec" = y ] || [ "$dec" = n ]; do
 		read -p "Install lightline (status bar)? [y/n]: " dec
 	done
@@ -111,6 +132,34 @@ function install_lightline {
 		sed -i "/call plug#begin()/a Plug 'itchyny/lightline.vim'" ~/.vimrc
 		# installs lightline
 		plug_install
+		# prompts user to select colorscheme for lightline
+		local color
+		read -p "(Enter the name of the desired colorscheme for lightline, without file extension. 
+			Or press <enter> to list all available colors): " color
+		if [ "$color" = "" ]; then
+			echo -e "\n"
+			ls ~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme
+			echo -e "\n"
+			read -p "Enter the name of the desired lightline colorscheme: " color
+		fi	
+		local FILE=~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/$color.vim
+		# Checks if color.vim is available
+		if [ ! -f "$FILE" ]; then
+			until [ -f "$FILE" ]; do
+				read -p "Color cannot be found, enter a valid name: " color
+				FILE=~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/$color.vim		
+			done
+		fi
+		# Appends lightline congfiguration to .vimrc file
+		{
+			
+			echo '" lightline config'
+			echo 'set noshowmode'
+			echo 'let g:lightline = {'
+	      		echo "	\ 'colorscheme': 'one',"
+	      		echo '	\ }'
+			
+		} >> ~/.vimrc
 		
 	fi	
 } 
@@ -119,7 +168,8 @@ function install_lightline {
 function main {
 	check_files
 	copy_files
-	set_color
+	set_colormode
+	set_colorscheme
 	install_vimplug
 	install_lightline
 	
