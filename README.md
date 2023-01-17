@@ -63,3 +63,10 @@ sudo update-alternatives --config editor
 ```
 Then, when prompted, enter the number that corresponds with the path containing vim.basic (be careful to select vim.basic and not vim.tiny)  
 
+
+## Credits  
+monokai: https://github.com/sickill/vim-monokai  
+badwolf: https://github.com/sjl/badwolf  
+iceberg: https://github.com/cocopon/iceberg.vim  
+vim-plug: https://github.com/junegunn/vim-plug  
+lightline: https://github.com/itchyny/lightline.vim
