@@ -16,9 +16,24 @@ The goal of this project is to create an all-in-one repository that includes all
 ### Some considerations:
 This configuration script takes a minimalist approach which means only modifying the bare minimum required to have the user-selected installed colorschemes or plugins perform as expected. This approach was selected because more advanced configuration and tools like tab completion, auto suggestions, etc, is extremely personal and user dependant. Therefore the default vim configuration was selected as the base which the user can then build off of and personalize further if desired after running the script.  
 - The script does not install vim itself to avoid having to run the script as sudo/root. You may need to install vim before running the script, instructions for this have been provided further below.  
+### Disclaimer:
+Not all the work contained in this repository is my own. Files for things like the vim colorschemes for example are files that I found while searching online and decided to include. I have compiled a list of the original authors, as best as I can, at the very end of this file. If you would like to use my work, please give credit as well. 
+  
+       
+       
+# Available configurations:
+### Vim color modes:
+This has an effect on colorschemes or plugins that have built in dark or light modes  
+   
+- dark
+- light
+### Vim colorschemes:
+Sets the overall colorscheme in vim  
 
-## Available configurations:
-
+- badwolf
+- goodwolf
+- iceberg
+- monokai  
 
 ## Installing Vim:
 ```Bash
