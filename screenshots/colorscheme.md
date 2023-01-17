@@ -1,5 +1,7 @@
 # Available Colorschemes
 
+Taken from: https://github.com/itchyny/lightline.vim
+
 ### powerline (default)
 
 ![lightline.vim - powerline](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/powerline.png)
