@@ -1,15 +1,24 @@
 # vim_configuration
 ## About:  
-The goal of this project is to create an all-in-one repository that includes all the files necessary to install and configure vim to ones liking as easily as possible. To perform the install and configuration process a script was written that does everything for the user, the user only needs to run the script and follow the prompts provided. 
+The goal of this project is to create an all-in-one repository that includes all the files necessary to install and configure vim to ones liking as easily as possible. To perform the install and configuration process a script was written that does everything for the user, the user only needs to run the script and follow the prompts provided. Simply run the script, and you will be prompted to select your desired color modes, colorschemes, plugin manager, plugins and their available configurations. Everything will be automatically installed and configured as selected, nothing will be installed or added that was not specifically chosen.  
+- Sudo/root are not required to run the setup script
 ### Who this is for:  
-- Those looking for a terminal based custom vim configuration with 256-based color
+- Those looking for a terminal based personalized vim configuration with 256-based color
+- Those looking for a personalized install and configuration
 - Those looking for an easy install process
 - Those looking for a script they can keep to easily reconfigure their setup in the future.
-- Those who may be new to linux or UNIX based operating systems and are not yet comfortable with the command line. 
+- Those who may be new to Linux or UNIX based operating systems and are not yet comfortable with the command line. 
 - Those who want to avoid spending time manually modifying dot files
 - Those looking for a repository with everything included
+### Who this is not for:
+- Those looking to configure a GUI version of vim
+- Those looking to configure neovim (nvim)
 ### Some considerations:
-This configuration script takes a minimalist approach which means only modifying the bare minimum required to have the user-selected installed colorschemes or plugins perform as expected. This approach was selected because more advanced configuration and tools like tab completion, auto suggestions, etc, is extremely personal and user dependant. Therefore the default vim configuration was selected as the base which the user can then build off of and personalize further if desired after running the script.
+This configuration script takes a minimalist approach which means only modifying the bare minimum required to have the user-selected installed colorschemes or plugins perform as expected. This approach was selected because more advanced configuration and tools like tab completion, auto suggestions, etc, is extremely personal and user dependant. Therefore the default vim configuration was selected as the base which the user can then build off of and personalize further if desired after running the script.  
+- The script does not install vim itself to avoid having to run the script as sudo/root. You may need to install vim before running the script, instructions for this have been provided further below.  
+
+## Available configurations:
+
 
 ## Installing Vim:
 ```Bash
