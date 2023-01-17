@@ -54,7 +54,6 @@ function copy_files {
 ### Allows user to select their color mode and appends necessary code to .vimrc
 function set_colormode {
 	local mode=
-	echo -e "\n"
 	until [ "$mode" = d ] || [ "$mode" = l ]; do
 		read -p "Enter your desired color mode (dark or light). 
 		This effects colorschemes and plugins with light and dark variants built in. [d/l]: " mode
@@ -73,9 +72,8 @@ function set_colormode {
 ### Allows user to select color scheme of their choice and appends necessary code to .vimrc
 function set_colorscheme {
 	local color
-	echo -e "\n"
-	read -p "(Enter the name of the desired colorscheme, without file extension. 
-	Or press <enter> to list all available colors): " color
+	read -p "Enter the name of the desired colorscheme, without file extension. 
+	(Or press <enter> to list all available colors): " color
 	if [ "$color" = "" ]; then
 		echo -e "\n"
 		ls ~/.vim/colors
@@ -99,7 +97,6 @@ function set_colorscheme {
 function install_vimplug {
 	# Prompts user if they would like to install vim-plug and plugins
 	local dec=
-	echo -e "\n"
 	until [ "$dec" = y ] || [ "$dec" = n ]; do
 		read -p "Install vim-plug and desired plugins? [y/n]: " dec
 	done
@@ -135,9 +132,9 @@ function install_lightline {
 		sed -i "/call plug#begin()/a Plug 'itchyny/lightline.vim'" ~/.vimrc
 		# installs lightline
 		plug_install
+		echo "> lightline installed"
 		# prompts user to select colorscheme for lightline
 		local color
-		echo -e "\n"
 		read -p "Enter the name of the desired colorscheme for lightline, without file extension. 
 		(Or press <enter> to list all available colors): " color
 		if [ "$color" = "" ]; then
