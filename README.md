@@ -48,7 +48,7 @@ Used to install plugins
 ### Plugins
 - lightline
   - colorschemes:
-    - https://github.com/petrosvisconte/vim_configuration/blob/main/screenshots/colorscheme.md
+    - https://github.com/itchyny/lightline.vim/blob/b1e91b41f5028d65fa3d31a425ff21591d5d957f/colorscheme.md
       
 - wakatime
 
