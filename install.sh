@@ -60,10 +60,10 @@ function set_colormode {
 	done
 	if [ "$mode" = d ]; then
 		echo 'set background=dark' >> ~/.vimrc
-		echo "< dark mode set"
+		echo "> dark mode set"
 	else
 		echo 'set background=light' >> ~/.vimrc
-		echo "< light mode set"
+		echo "> light mode set"
 	fi	
 	# Appends colorscheme comment for later
 	echo '" colorscheme' >> ~/.vimrc
@@ -88,7 +88,7 @@ function set_colorscheme {
 			FILE=~/.vim/colors/$color.vim		
 		done
 	fi
-	echo "< ~/.vim/colors/$color.vim set as colorscheme"
+	echo "< $FILE set as colorscheme"
 	# Appends colorscheme chosen to vim config file
 	echo "colorscheme $color" >> ~/.vimrc
 }
@@ -160,6 +160,7 @@ function install_lightline {
 	      		echo "	\ 'colorscheme': '$color',"
 	      		echo '	\ }'	
 		} >> ~/.vimrc
+		echo "> $FILE set as colorscheme"
 		
 	fi	
 } 
@@ -170,14 +171,17 @@ function install_wakatime {
 	# prompts to install
 	until [ "$dec" = y ] || [ "$dec" = n ]; do
 		read -p "Install wakatime (coding activity and stats)? 
-		Note: You will need to enter API key when prompted [y/n]: " dec
+		Note: You will need to enter your API key into vim when prompted [y/n]: " dec
 	done
 	if [ "$dec" = y ]; then
 		# adds wakatime to plugins in .vimrc
 		sed -i "/call plug#begin()/a Plug 'wakatime/vim-wakatime'" ~/.vimrc
 		# installs wakatime
 		plug_install
+		plug_install # calls second time for API key
 		echo "> wakatime installed"
+	fi 
+}
 
 
 
