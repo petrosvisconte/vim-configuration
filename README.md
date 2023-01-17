@@ -39,6 +39,8 @@ Sets the overall colorscheme in vim. All provided colorschemes are 256-color com
 - alduin
 - anderson
 - angr
+- apprentice
+- archery
 ### Plugin managers:
 Used to install plugins
 
