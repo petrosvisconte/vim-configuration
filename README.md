@@ -47,6 +47,9 @@ Used to install plugins
 - vim-plug
 ### Plugins
 - lightline
+  - colorschemes:
+    - 
+      
 - wakatime
 
 ## Installing Vim:
