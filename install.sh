@@ -123,7 +123,7 @@ function plug_install {
 ### Installs and setups lightline
 function install_lightline {
 	local dec=
-	# prompts to install lightline
+	# prompts to install
 	until [ "$dec" = y ] || [ "$dec" = n ]; do
 		read -p "Install lightline (status bar)? [y/n]: " dec
 	done
@@ -164,6 +164,25 @@ function install_lightline {
 	fi	
 } 
 
+### Installs and setups wakatime
+function install_wakatime {
+	local dec=
+	# prompts to install
+	until [ "$dec" = y ] || [ "$dec" = n ]; do
+		read -p "Install wakatime (coding activity and stats)? 
+		Note: You will need to enter API key when prompted [y/n]: " dec
+	done
+	if [ "$dec" = y ]; then
+		# adds wakatime to plugins in .vimrc
+		sed -i "/call plug#begin()/a Plug 'wakatime/vim-wakatime'" ~/.vimrc
+		# installs wakatime
+		plug_install
+		echo "> wakatime installed"
+
+
+
+
+
 ### Main function
 function main {
 	check_files
@@ -172,7 +191,9 @@ function main {
 	set_colorscheme
 	install_vimplug
 	install_lightline
-	
+	install_wakatime
+
+
 	echo "> Selected plugins installed. You can find them in $HOME/.vim/plugged"
 }
 
