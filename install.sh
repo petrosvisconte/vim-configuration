@@ -56,7 +56,7 @@ function set_colormode {
 	local mode=
 	until [ "$mode" = d ] || [ "$mode" = l ]; do
 	read -p "Enter your desired color mode (dark or light). 
-		This effects colorschemes and plugins with light and dark variants built in. [d/l]: " mode
+	This effects colorschemes and plugins with light and dark variants built in. [d/l]: " mode
 	done
 	if [ "$mode" = d ]; then
 		echo 'set background=dark' >> ~/.vimrc
@@ -73,7 +73,7 @@ function set_colormode {
 function set_colorscheme {
 	local color
 	read -p "(Enter the name of the desired colorscheme, without file extension. 
-		Or press <enter> to list all available colors): " color
+	Or press <enter> to list all available colors): " color
 	if [ "$color" = "" ]; then
 		echo -e "\n"
 		ls ~/.vim/colors
@@ -107,11 +107,11 @@ function install_vimplug {
 	# vim-plug
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 	    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	echo "" >> ~/.vimrc
+	echo '' >> ~/.vimrc
 	echo '" vim-plug plugins' >> ~/.vimrc
-	echo "call plug#begin()" >> ~/.vimrc
-	echo "call plug#end()" >> ~/.vimrc
-	echo "> vim-plug installed"
+	echo 'call plug#begin()' >> ~/.vimrc
+	echo 'call plug#end()' >> ~/.vimrc
+	echo '> vim-plug installed'
 }
 
 ### Installs plugin using vim :PlugInstall command
@@ -134,8 +134,9 @@ function install_lightline {
 		plug_install
 		# prompts user to select colorscheme for lightline
 		local color
+		echo -e "\n"
 		read -p "(Enter the name of the desired colorscheme for lightline, without file extension. 
-			Or press <enter> to list all available colors): " color
+		Or press <enter> to list all available colors): " color
 		if [ "$color" = "" ]; then
 			echo -e "\n"
 			ls ~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme
@@ -151,11 +152,12 @@ function install_lightline {
 			done
 		fi
 		# Appends lightline congfiguration to .vimrc file
-		{
+		{	
+			echo ''
 			echo '" lightline config'
 			echo 'set noshowmode'
 			echo 'let g:lightline = {'
-	      		echo "	\ 'colorscheme': 'one',"
+	      		echo "	\ 'colorscheme': '$color',"
 	      		echo '	\ }'	
 		} >> ~/.vimrc
 		
