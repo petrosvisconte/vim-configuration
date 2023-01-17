@@ -116,4 +116,6 @@ afterglow: https://github.com/danilo-augusto/vim-afterglow
 alduin: https://github.com/AlessandroYorba/Alduin  
 anderson: https://github.com/tlhr/anderson.vim  
 angr: https://github.com/zacanger/angr.vim
+apprentice: https://github.com/romainl/Apprentice
+archery: https://github.com/Badacadabra/vim-archery
 
