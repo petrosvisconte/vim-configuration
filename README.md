@@ -34,6 +34,11 @@ Sets the overall colorscheme in vim. All provided colorschemes are 256-color com
 - goodwolf
 - iceberg
 - monokai  
+- 256_noir
+- afterglow
+- alduin
+- anderson
+- angr
 ### Plugin managers:
 Used to install plugins
 
@@ -105,4 +110,10 @@ badwolf: https://github.com/sjl/badwolf
 iceberg: https://github.com/cocopon/iceberg.vim  
 vim-plug: https://github.com/junegunn/vim-plug  
 lightline: https://github.com/itchyny/lightline.vim  
-wakatime: https://wakatime.com
+wakatime: https://wakatime.com  
+256_noir: https://github.com/andreasvc/vim-256noir  
+afterglow: https://github.com/danilo-augusto/vim-afterglow  
+alduin: https://github.com/AlessandroYorba/Alduin  
+anderson: https://github.com/tlhr/anderson.vim  
+angr: https://github.com/zacanger/angr.vim
+
