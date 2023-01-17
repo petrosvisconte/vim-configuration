@@ -1,3 +1,6 @@
+# Author: Pierre Visconti
+# Github: https://github.com/petrosvisconte
+
 #!/usr/bin/env bash
 
 set -euo pipefail
