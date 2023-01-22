@@ -33,7 +33,7 @@ function copy_files {
 	if [ -f "${FILE}" ]; then
 		local dec=
 		until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-			read -pr $'\n'"A .vimrc has already been created. Overwrite file? [y/n]: " dec
+			read -p $'\n'"A .vimrc has already been created. Overwrite file? [y/n]: " dec
 		done
 		if [ "${dec}" = n ]; then
 			echo "> Install canceled"
@@ -76,19 +76,19 @@ function set_colormode {
 ### Allows user to select color scheme of their choice and appends necessary code to .vimrc
 function set_colorscheme {
 	local color
-	read -pr $'\n'"Enter the name of the desired colorscheme, without file extension. 
+	read -p $'\n'"Enter the name of the desired colorscheme, without file extension. 
 	(Or press <enter> to list all available colors): " color
 	if [ "${color}" = "" ]; then
 		echo -e "\n"
 		ls ~/.vim/colors
 		echo -e "\n"
-		read -pr "Enter the name of the desired colorscheme: " color
+		read -p "Enter the name of the desired colorscheme: " color
 	fi
 	local FILE=~/.vim/colors/${color}.vim
 	# Checks if color.vim is available
 	if [ ! -f "${FILE}" ]; then
 		until [ -f "${FILE}" ]; do
-			read -pr "Color cannot be found, enter a valid name: " color
+			read -p "Color cannot be found, enter a valid name: " color
 			FILE=~/.vim/colors/$color.vim
 		done
 	fi
@@ -102,7 +102,7 @@ function install_vimplug {
 	# Prompts user if they would like to install vim-plug and plugins
 	local dec=
 	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -pr $'\n'"Install vim-plug and desired plugins? [y/n]: " dec
+		read -p $'\n'"Install vim-plug and desired plugins? [y/n]: " dec
 	done
 	if [ "${dec}" = n ]; then
 		echo "> Setup complete"
@@ -126,7 +126,7 @@ function plug_install {
 function select_statusbar {
 	local dec=
 	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -pr $'\n'"Install a status bar? [y/n]: " dec
+		read -p $'\n'"Install a status bar? [y/n]: " dec
 	done
 	if [ "${dec}" = y ]; then
 		echo 'Select one of the following options (Enter the corresponding number):'
@@ -142,7 +142,7 @@ function install_lightline {
 	local dec=
 	# prompts to install
 	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -pr $'\n'"Install lightline (status bar)? [y/n]: " dec
+		read -p $'\n'"Install lightline (status bar)? [y/n]: " dec
 	done
 	if [ "${dec}" = y ]; then
 		# adds lightline to plugins in .vimrc
@@ -152,19 +152,19 @@ function install_lightline {
 		echo "> lightline installed"
 		# prompts user to select colorscheme for lightline
 		local color
-		read -pr $'\n'"Enter the name of the desired colorscheme for lightline, without file extension. 
+		read -p $'\n'"Enter the name of the desired colorscheme for lightline, without file extension. 
 		(Or press <enter> to list all available colors): " color
 		if [ "${color}" = "" ]; then
 			echo -e "\n"
 			ls ~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme
 			echo -e "\n"
-			read -pr "Enter the name of the desired lightline colorscheme: " color
+			read -p "Enter the name of the desired lightline colorscheme: " color
 		fi	
 		local FILE=~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/${color}.vim
 		# Checks if color.vim is available
 		if [ ! -f "${FILE}" ]; then
 			until [ -f "${FILE}" ]; do
-				read -pr "Color cannot be found, enter a valid name: " color
+				read -p "Color cannot be found, enter a valid name: " color
 				FILE=~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/${color}.vim
 			done
 		fi
@@ -186,7 +186,7 @@ function install_wakatime {
 	local dec=
 	# prompts to install
 	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -pr $'\n'"Install wakatime (coding activity and stats)? 
+		read -p $'\n'"Install wakatime (coding activity and stats)? 
 		Note: You will need to enter your API key into vim when prompted [y/n]: " dec
 	done
 	if [ "${dec}" = y ]; then
@@ -204,7 +204,7 @@ function install_nerdtree {
 	local dec=
 	# prompts to install
 	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -pr $'\n'"Install NerdTree (file browser) [y/n]: " dec
+		read -p $'\n'"Install NerdTree (file browser) [y/n]: " dec
 	done
 	if [ "${dec}" = y ]; then
 		# adds nerdtree to plugins in .vimrc
@@ -220,7 +220,7 @@ function install_undotree {
 	local dec=
 	# prompts to install
 	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -pr $'\n'"Install undotree (keeps an edit history) [y/n]: " dec
+		read -p $'\n'"Install undotree (keeps an edit history) [y/n]: " dec
 	done
 	if [ "${dec}" = y ]; then
 		# adds undotree to plugins in .vimrc
@@ -236,7 +236,7 @@ function install_ycm {
 	local dec=
 	# prompts to install
 	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -pr $'\n'"Install YouCompleteMe (Autosuggestions, auto complete, warnings/erros) [y/n]: " dec
+		read -p $'\n'"Install YouCompleteMe (Autosuggestions, auto complete, warnings/erros) [y/n]: " dec
 	done
 	if [ "${dec}" = y ]; then
 		# adds undotree to plugins in .vimrc
