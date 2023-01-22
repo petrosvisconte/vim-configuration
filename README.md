@@ -2,6 +2,11 @@
 ## About:  
 The goal of this project is to create an all-in-one repository that includes all the files necessary to install and configure vim to ones liking as easily as possible. To perform the install and configuration process a script was written that does everything for the user, the user only needs to run the script and follow the prompts provided. Simply run the script, and you will be prompted to select your desired color modes, colorschemes, plugin manager, plugins and their available configurations. Everything will be automatically installed and configured as selected, nothing will be installed or added that was not specifically chosen.  
 - Sudo/root are **not** required to run the setup script
+### Requirements:
+- vim
+- python
+- git
+- curl
 ### Who this is for:  
 - Those looking for a terminal based personalized vim configuration with 256-based color
 - Those looking for a personalized install and configuration
