@@ -95,6 +95,7 @@ function set_colorscheme {
 	echo "< ${FILE} set as colorscheme"
 	# Appends colorscheme chosen to vim config file
 	echo "colorscheme ${color}" >> ~/.vimrc
+	echo 'hightlight Comment cterm=italic' >> ~/.vimrc
 }
 
 ### Installs and setups vim-plug
