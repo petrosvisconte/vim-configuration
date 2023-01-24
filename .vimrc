@@ -149,5 +149,8 @@ endif
 set number
 syntax enable
 set termguicolors
+" set term=xterm-256color
 set showtabline=2
 set laststatus=2
+set encoding=UTF-8
+highlight Comment cterm=italic

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#
+
 # Configures vim and plugins
 # Author: Pierre Visconti
 # Github: https://github.com/petrosvisconte
@@ -11,8 +11,8 @@ set -euo pipefail
 function check_files {
 	local FILE=~/vim_configuration
 	if [ ! -d "${FILE}" ]; then
-		echo "${FILE} does not exist"
-		exit 1
+      		echo "${FILE} does not exist"
+      		exit 1
 	fi
 	FILE=~/vim_configuration/colors
 	if [ ! -d "${FILE}" ]; then
@@ -32,10 +32,10 @@ function copy_files {
 	# Prompts user to overwrite or exit if they already have an existing .vimrc 
 	if [ -f "${FILE}" ]; then
 		local dec=
-		until [ "${dec}" = y ] || [ "${dec}" = n ]; do
+		until [ "${dec}" == y ] || [ "${dec}" == n ]; do
 			read -p $'\n'"A .vimrc has already been created. Overwrite file? [y/n]: " dec
 		done
-		if [ "${dec}" = n ]; then
+		if [ "${dec}" == n ]; then
 			echo "> Install canceled"
 			exit 1
 		fi
@@ -57,12 +57,12 @@ function copy_files {
 
 ### Allows user to select their color mode and appends necessary code to .vimrc
 function set_colormode {
-	local mode=
-	until [ "${mode}" = d ] || [ "${mode}" = l ]; do
-		read -p $'\n'"Enter your desired color mode (dark or light). 
-		This effects colorschemes and plugins with light and dark variants built in. [d/l]: " mode
+	local dec=
+	until [ "${dec}" == d ] || [ "${dec}" == l ]; do
+		echo -e "\nEnter your desired color mode (dark or light)." 
+		read -p "This effects colorschemes and plugins with light and dark variants built in. [d/l]: " dec
 	done
-	if [ "${mode}" = d ]; then
+	if [ "${dec}" == d ]; then
 		echo 'set background=dark' >> ~/.vimrc
 		echo "> dark mode set"
 	else
@@ -76,9 +76,9 @@ function set_colormode {
 ### Allows user to select color scheme of their choice and appends necessary code to .vimrc
 function set_colorscheme {
 	local color
-	read -p $'\n'"Enter the name of the desired colorscheme, without file extension. 
-	(Or press <enter> to list all available colors): " color
-	if [ "${color}" = "" ]; then
+	echo -e "\nEnter the name of the desired colorscheme. Do not include the file extension."
+	read -p "(Or press <enter> to list all available colors): " color
+	if [ "${color}" == "" ]; then
 		echo -e "\n"
 		ls ~/.vim/colors
 		echo -e "\n"
@@ -101,10 +101,10 @@ function set_colorscheme {
 function install_vimplug {
 	# Prompts user if they would like to install vim-plug and plugins
 	local dec=
-	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -p $'\n'"Install vim-plug and desired plugins? [y/n]: " dec
+	until [ "${dec}" == y ] || [ "${dec}" == n ]; do
+		read -p $'\n'"Install vim-plug (required to install plugins) [y/n]: " dec
 	done
-	if [ "${dec}" = n ]; then
+	if [ "${dec}" == n ]; then
 		echo "> Setup complete"
 		exit 0
 	fi
@@ -123,73 +123,144 @@ function plug_install {
 	vim +'PlugInstall --sync' +qa
 }
 
-function select_statusbar {
+### Installs users statusbar of choice
+# Calls the following functions:
+# install_lightline
+# install_airline
+function install_statusbar {
 	local dec=
-	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
+	until [ "${dec}" == y ] || [ "${dec}" == n ]; do
 		read -p $'\n'"Install a status bar? [y/n]: " dec
 	done
-	if [ "${dec}" = y ]; then
-		echo 'Select one of the following options (Enter the corresponding number):'
-		echo '1. lightline'
-		echo '2. airline'
-		dec=
+	if [ "${dec}" == y ]; then
+		echo -e "\nAvailable status bars:"
+		echo '1) lightline'
+		echo '2) airline'
+		read -p "Select your status bar: " dec
+		max_retry=0
+		while [ TRUE ] && [ "${max_retry}" -lt 5 ]; do 
+			case "${dec}" in
+				1)
+					install_lightline
+					break
+					;;
+				2)
+					install_airline
+					break
+					;;
+				*)
+					read -p "Not a valid choice, try again: " dec
+					((++max_retry))
+					;;
+			esac
+		done
+
 	fi
 }
 
-
 ### Installs and setups lightline
+# Gets called by the following functions:
+# install_statusbar
 function install_lightline {
-	local dec=
-	# prompts to install
-	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
-		read -p $'\n'"Install lightline (status bar)? [y/n]: " dec
-	done
-	if [ "${dec}" = y ]; then
-		# adds lightline to plugins in .vimrc
-		sed -i "/call plug#begin()/a Plug 'itchyny/lightline.vim'" ~/.vimrc
-		# installs lightline
-		plug_install
-		echo "> lightline installed"
-		# prompts user to select colorscheme for lightline
-		local color
-		read -p $'\n'"Enter the name of the desired colorscheme for lightline, without file extension. 
-		(Or press <enter> to list all available colors): " color
-		if [ "${color}" = "" ]; then
-			echo -e "\n"
-			ls ~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme
-			echo -e "\n"
-			read -p "Enter the name of the desired lightline colorscheme: " color
-		fi	
-		local FILE=~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/${color}.vim
-		# Checks if color.vim is available
-		if [ ! -f "${FILE}" ]; then
-			until [ -f "${FILE}" ]; do
-				read -p "Color cannot be found, enter a valid name: " color
-				FILE=~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/${color}.vim
-			done
-		fi
-		# Appends lightline congfiguration to .vimrc file
-		{
-			echo ''
-			echo '" lightline config'
-			echo 'set noshowmode'
-			echo 'let g:lightline = {'
-			echo " \ 'colorscheme': '${color}',"
-			echo ' \ }'
-		} >> ~/.vimrc
-		echo "> ${FILE} set as colorscheme"
+	# adds lightline to plugins in .vimrc
+	sed -i "/call plug#begin()/a Plug 'itchyny/lightline.vim'" ~/.vimrc
+	# installs lightline
+	plug_install
+	echo "> lightline installed"
+	# prompts user to select colorscheme for lightline
+	local color
+	echo -e "\nEnter the name of the desired colorscheme for lightline. Do not include the file extension."
+	read -p "(Or press <enter> to list all available colors): " color
+	if [ "${color}" == "" ]; then
+		echo -e "\n"
+		ls ~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme
+		echo -e "\n"
+		read -p "Enter the name of the desired lightline colorscheme: " color
+	fi	
+	local FILE=~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/${color}.vim
+	# Checks if color.vim is available
+	if [ ! -f "${FILE}" ]; then
+		until [ -f "${FILE}" ]; do
+			read -p "Color cannot be found, enter a valid name: " color
+			FILE=~/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/${color}.vim
+		done
 	fi
+	# Appends lightline congfiguration to .vimrc file
+	{
+		echo ''
+		echo '" lightline config'
+		echo 'set noshowmode'
+		echo 'let g:lightline = {'
+		echo " \ 'colorscheme': '${color}',"
+		echo ' \ }'
+	} >> ~/.vimrc
+	echo "> ${FILE} set as colorscheme"
 } 
+
+### Installs and setups airline
+# Gets called by the following functions:
+# install_statusbar
+function install_airline {
+	# adds airline and airline themes to plugins in .vimrc
+	sed -i "/call plug#begin()/a Plug 'vim-airline/vim-airline'" ~/.vimrc
+	sed -i "/call plug#begin()/a Plug 'vim-airline/vim-airline-themes'" ~/.vimrc
+	# installs airline and airline themes
+	plug_install
+	echo "> airline installed"
+	# prompts user to select colorscheme for airline
+	local color
+	echo -e "\nEnter the name of the desired colorscheme for airline. Do not include the file extension." 
+	read -p "(Or press <enter> to list all available colors): " color
+	if [ "${color}" == "" ]; then
+		echo -e "\n"
+		ls ~/.vim/plugged/vim-airline-themes/autoload/airline/themes
+		echo -e "\n"
+		read -p "Enter the name of the desired airline colorscheme: " color
+	fi	
+	local FILE=~/.vim/plugged/vim-airline-themes/autoload/airline/themes/${color}.vim
+	# Checks if color.vim is available
+	if [ ! -f "${FILE}" ]; then
+		until [ -f "${FILE}" ]; do
+			read -p "Color cannot be found, enter a valid name: " color
+			FILE=~/.vim/plugged/vim-airline-themes/autoload/airline/themes/${color}.vim
+		done
+	fi
+	# Appends airline congfiguration to .vimrc file
+	{
+		echo ''
+		echo "let g:airline_theme='deus'"
+		echo "let g:airline_detect_modified=1"
+
+	} >> ~/.vimrc
+	cat >> ~/.vimrc <<-EOL	
+		let g:airline_filetype_overrides = {
+		      \ 'coc-explorer':  [ 'CoC Explorer', '' ],
+		      \ 'defx':  ['defx', '%{b:defx.paths[0]}'],
+		      \ 'fugitive': ['fugitive', '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'],
+		      \ 'floggraph':  [ 'Flog', '%{get(b:, "flog_status_summary", "")}' ],
+		      \ 'gundo': [ 'Gundo', '' ],
+		      \ 'help':  [ 'Help', '%f' ],
+		      \ 'minibufexpl': [ 'MiniBufExplorer', '' ],
+		      \ 'nerdtree': [ get(g:, 'NERDTreeStatusline', 'NERD'), '' ],
+		      \ 'startify': [ 'startify', '' ],
+		      \ 'vim-plug': [ 'Plugins', '' ],
+		      \ 'vimfiler': [ 'vimfiler', '%{vimfiler#get_status_string()}' ],
+		      \ 'vimshell': ['vimshell','%{vimshell#get_status_string()}'],
+		      \ 'vaffle' : [ 'Vaffle', '%{b:vaffle.dir}' ],
+		      \ }
+	EOL
+	echo "> ${FILE} set as colorscheme"
+}
 
 ### Installs and setups wakatime
 function install_wakatime {
 	local dec=
 	# prompts to install
-	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
+	until [ "${dec}" == y ] || [ "${dec}" == n ]; do
 		read -p $'\n'"Install wakatime (coding activity and stats)? 
 		Note: You will need to enter your API key into vim when prompted [y/n]: " dec
 	done
-	if [ "${dec}" = y ]; then
+	if [ "${dec}" == y ]; then
 		# adds wakatime to plugins in .vimrc
 		sed -i "/call plug#begin()/a Plug 'wakatime/vim-wakatime'" ~/.vimrc
 		# installs wakatime
@@ -203,10 +274,10 @@ function install_wakatime {
 function install_nerdtree {
 	local dec=
 	# prompts to install
-	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
+	until [ "${dec}" == y ] || [ "${dec}" == n ]; do
 		read -p $'\n'"Install NerdTree (file browser) [y/n]: " dec
 	done
-	if [ "${dec}" = y ]; then
+	if [ "${dec}" == y ]; then
 		# adds nerdtree to plugins in .vimrc
 		sed -i "/call plug#begin()/a Plug 'preservim/nerdtree'" ~/.vimrc
 		# installs nerdtree
@@ -219,10 +290,10 @@ function install_nerdtree {
 function install_undotree {
 	local dec=
 	# prompts to install
-	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
+	until [ "${dec}" == y ] || [ "${dec}" == n ]; do
 		read -p $'\n'"Install undotree (keeps an edit history) [y/n]: " dec
 	done
-	if [ "${dec}" = y ]; then
+	if [ "${dec}" == y ]; then
 		# adds undotree to plugins in .vimrc
 		sed -i "/call plug#begin()/a Plug 'mbbill/undotree'" ~/.vimrc
 		# installs undotree
@@ -235,10 +306,10 @@ function install_undotree {
 function install_ycm {
 	local dec=
 	# prompts to install
-	until [ "${dec}" = y ] || [ "${dec}" = n ]; do
+	until [ "${dec}" == y ] || [ "${dec}" == n ]; do
 		read -p $'\n'"Install YouCompleteMe (Autosuggestions, auto complete, warnings/erros) [y/n]: " dec
 	done
-	if [ "${dec}" = y ]; then
+	if [ "${dec}" == y ]; then
 		# adds undotree to plugins in .vimrc
 		sed -i "/call plug#begin()/a Plug 'Valloric/YouCompleteMe'" ~/.vimrc
 		# installs undotree
@@ -255,9 +326,7 @@ function main {
 	set_colormode
 	set_colorscheme
 	install_vimplug
-	# select_statusbar
-	
-	install_lightline
+	install_statusbar
 	install_wakatime
 	install_nerdtree
 	install_undotree
