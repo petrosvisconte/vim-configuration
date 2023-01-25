@@ -54,8 +54,9 @@ Used to install plugins
 - lightline
   - colorschemes:
     - https://github.com/itchyny/lightline.vim/blob/b1e91b41f5028d65fa3d31a425ff21591d5d957f/colorscheme.md
-      
+- airline      
 - wakatime
+- nerdtree
 
 ## Installing Vim:
 ```Bash
