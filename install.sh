@@ -227,13 +227,11 @@ function install_airline {
 		done
 	fi
 	# Appends airline congfiguration to .vimrc file
-	{
-		echo ''
-		echo "let g:airline_theme='deus'"
-		echo "let g:airline_detect_modified=1"
-
-	} >> ~/.vimrc
-	cat >> ~/.vimrc <<-EOL	
+	cat >> ~/.vimrc <<-EOT	
+		
+		" airline configuration
+		let g:airline_theme='deus'
+		let g:airline_detect_modified=1
 		let g:airline_filetype_overrides = {
 		      \ 'coc-explorer':  [ 'CoC Explorer', '' ],
 		      \ 'defx':  ['defx', '%{b:defx.paths[0]}'],
@@ -249,7 +247,7 @@ function install_airline {
 		      \ 'vimshell': ['vimshell','%{vimshell#get_status_string()}'],
 		      \ 'vaffle' : [ 'Vaffle', '%{b:vaffle.dir}' ],
 		      \ }
-	EOL
+	EOT
 	echo "> ${FILE} set as colorscheme"
 }
 
@@ -284,7 +282,17 @@ function install_nerdtree {
 		# installs nerdtree
 		plug_install
 		echo "> nerdtree installed"
-	fi 
+		# adds nerdtree configuration to vimrc
+		cat >> ~/.vimrc <<-EOT
+
+			" Nerdtree configuration
+			" Exit Vim if NERDTree is the only window remaining in the only tab.
+			autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+			" Close the tab if NERDTree is the only window remaining in it.
+			autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+		EOT
+	fi
+
 }
 
 ### Installs and setups undotree
