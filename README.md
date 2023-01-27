@@ -4,7 +4,7 @@ The goal of this project is to create an all-in-one repository that includes all
 - Sudo/root are **not** required to run the setup script
 ### Requirements:
 - vim
-- python
+- python3
 - git
 - curl
 ### Some considerations:
