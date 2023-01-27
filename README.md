@@ -7,17 +7,6 @@ The goal of this project is to create an all-in-one repository that includes all
 - python
 - git
 - curl
-### Who this is for:  
-- Those looking for a terminal based personalized vim configuration with 256-based color
-- Those looking for a personalized install and configuration
-- Those looking for an easy install process
-- Those looking for a script they can keep to easily reconfigure their setup in the future.
-- Those who may be new to Linux or UNIX based operating systems and are not yet comfortable with the command line. 
-- Those who want to avoid spending time manually modifying dot files
-- Those looking for a repository with everything included
-### Who this is not for:
-- Those looking to configure a GUI version of vim
-- Those looking to configure neovim (nvim)
 ### Some considerations:
 This configuration script takes a minimalist approach which means only modifying the bare minimum required to have the user-selected installed colorschemes or plugins perform as expected. This approach was selected because more advanced configuration and tools like auto suggestions, auto indent, key bindings, etc, is extremely personal and user dependant. Therefore the default vim configuration was selected as the base which the user can then build off of and personalize further if desired after running the script.  
 - The script does not install vim itself to avoid having to run the script as sudo/root. You may need to install vim before running the script, instructions for this have been provided further below.  
