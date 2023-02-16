@@ -35,6 +35,7 @@ Sets the overall colorscheme in vim. All provided colorschemes are 256-color com
 - angr
 - apprentice
 - archery
+- nord
 ### Plugin managers:
 Used to install plugins
 
@@ -94,4 +95,5 @@ anderson: https://github.com/tlhr/anderson.vim
 angr: https://github.com/zacanger/angr.vim  
 apprentice: https://github.com/romainl/Apprentice  
 archery: https://github.com/Badacadabra/vim-archery  
+nord: https://github.com/arcticicestudio/nord-vim
 
