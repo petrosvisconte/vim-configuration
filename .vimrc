@@ -154,3 +154,11 @@ set showtabline=2
 set laststatus=2
 set encoding=UTF-8
 highlight Comment cterm=italic
+
+" sets different dimensions for default gvim window size if running
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window.
+  " Edit the lines and columns to desired number
+  set lines=99 columns=99
+endif
